@@ -19,8 +19,18 @@ void xor_encrypt_decrypt(const char *filename, const char *key,const char *messa
             char encrypted = message[i] ^ key[i % key_len];
             fwrite(&encrypted, 1, 1, file);
         }
-        fclose(file);
     }
+    else {
+        char ch;
+        size_t pos = 0;
+        while (fread(&ch, 1, 1, file) == 1) {
+            char decrypted = ch ^ key[pos % key_len];
+            printf("%c", decrypted);
+            pos++;
+        }
+        printf("\n");
+    }
+    fclose(file);
 }
 
 int main() {
@@ -53,9 +63,12 @@ int main() {
 
         xor_encrypt_decrypt(filename, key, message,  1);
 
-    } else {
+    } 
+    else if(choice == 'd')
+    {
         printf("Enter the filename to read encrypted data: ");
-        scanf("%s", filename);
+        fgets(filename, sizeof(filename), stdin);
+        filename[strcspn(filename, "\n")] = '\0';
 
         printf("Enter the decryption key: ");
         fgets(key, sizeof(key), stdin);
