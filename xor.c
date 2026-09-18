@@ -8,6 +8,11 @@ void xor_encrypt_decrypt(const char* filename, const char* key, const char* mess
 		return;
 	}
 
+	if (key[0] == '\0') {
+		printf("Error: key cannot be empty.\n");
+		return;
+	}
+
 	FILE* file = fopen(filename, mode == 0 ? "rb" : "wb");
 	if (!file) {
 		printf("Error opening file.\n");
