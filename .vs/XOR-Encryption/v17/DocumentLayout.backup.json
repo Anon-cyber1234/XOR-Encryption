@@ -38,8 +38,7 @@
               "RelativeToolTip": "file.txt",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2026-09-18T01:54:28.152Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-18T01:54:28.152Z"
             },
             {
               "$type": "Document",
@@ -49,7 +48,7 @@
               "RelativeDocumentMoniker": "xor.c",
               "ToolTip": "C:\\Users\\Student\\source\\repos\\Anon-cyber1234\\XOR-Encryption\\xor.c",
               "RelativeToolTip": "xor.c",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2026-09-18T00:36:55.143Z",
               "EditorCaption": ""
