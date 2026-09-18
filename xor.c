@@ -33,6 +33,7 @@ int main() {
     char choice;
     printf("Enter 'e' to encrypt or 'd' to decrypt: ");
     scanf(" %c", &choice);
+    getchar();
 
     if (choice != 'e' && choice != 'd') {
         printf("Invalid choice.\n");
@@ -41,16 +42,23 @@ int main() {
 
     char filename[256];
     char key[256];
+    char message[1024];
 
     if (choice == 'e') {
         printf("Enter the message to encrypt: ");
+        fgets(message, sizeof(message), stdin);
+        message[strcspn(message, "\n")] = '\0';
+
+        printf("Enter the encryption key: ");
         fgets(key, sizeof(key), stdin);
         key[strcspn(key, "\n")] = '\0';
 
         printf("Enter the filename to save encrypted data: ");
-        scanf("%s", filename);
+        fgets(filename, sizeof(filename), stdin);
+        filename[strcspn(filename, "\n")] = '\0';
 
         xor_encrypt_decrypt(filename, key, 1);
+
     } else {
         printf("Enter the filename to read encrypted data: ");
         scanf("%s", filename);
