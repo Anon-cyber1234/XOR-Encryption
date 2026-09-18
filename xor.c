@@ -1,32 +1,26 @@
 #include <stdio.h>
 #include <string.h>
 
-void xor_encrypt_decrypt(const char *filename, const char *key, int mode) {
+void xor_encrypt_decrypt(const char *filename, const char *key,const char *message, int mode) {
+
     FILE *file = fopen(filename, mode == 0 ? "rb" : "wb");
     if (!file) {
         printf("Error opening file.\n");
         return;
     }
 
-    char buffer[1024];
     size_t key_len = strlen(key);
-    size_t pos = 0;
 
-    while (fgets(buffer, sizeof(buffer), stdin)) {
-        for (size_t i = 0; buffer[i] != '\0'; ++i) {
-            if (buffer[i] == '\n') break;
-            buffer[i] ^= key[pos % key_len];
-            pos++;
-        }
+    if (mode == 1) {
+        size_t message_len = strlen(message);
 
-        if (mode == 0) {
-            fwrite(buffer, 1, strlen(buffer), file);
-        } else {
-            printf("%s", buffer);
+        for (size_t i = 0; i < message_len; i++)
+        {
+            char encrypted = message[i] ^ key[i % key_len];
+            fwrite(&encrypted, 1, 1, file);
         }
+        fclose(file);
     }
-
-    fclose(file);
 }
 
 int main() {
@@ -57,7 +51,7 @@ int main() {
         fgets(filename, sizeof(filename), stdin);
         filename[strcspn(filename, "\n")] = '\0';
 
-        xor_encrypt_decrypt(filename, key, 1);
+        xor_encrypt_decrypt(filename, key, message,  1);
 
     } else {
         printf("Enter the filename to read encrypted data: ");
@@ -67,7 +61,7 @@ int main() {
         fgets(key, sizeof(key), stdin);
         key[strcspn(key, "\n")] = '\0';
 
-        xor_encrypt_decrypt(filename, key, 0);
+        xor_encrypt_decrypt(filename, key,NULL, 0);
     }
 
     return 0;
